@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String name = packageInfo.loadLabel(pm).toString();
                 String packageName = packageInfo.packageName;
+                Log.v(TAG, name + ":" + packageName);
                 Drawable icon = packageInfo.loadIcon(pm);
 
                 App app = new App(name, packageName, icon);
@@ -70,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
     } // List of packagesz
 
     private boolean isSystemPackage(ApplicationInfo packageInfo) {
-        return ((packageInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) ? true
-                : false;
+        return ((packageInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) ? true : false;
     }
 
 
