@@ -1,6 +1,7 @@
 package infiniteloop.letusmeet;
 
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
 
         for (ApplicationInfo packageInfo : packages) {
-            if ((packageInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+            if (!isSystemPackage(packageInfo)) {
 
                 String name = packageInfo.loadLabel(pm).toString();
                 String packageName = packageInfo.packageName;
@@ -67,4 +68,11 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new AppAdapter(this, mApps);
         mAppList.setAdapter(mAdapter);
     } // List of packagesz
+
+    private boolean isSystemPackage(ApplicationInfo packageInfo) {
+        return ((packageInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) ? true
+                : false;
+    }
+
+
 }
