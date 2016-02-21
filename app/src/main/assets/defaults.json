@@ -33,5 +33,28 @@
       "level": "PERSONAL"
     },
     "isValid": "true"
+  },
+  {
+    "model": {
+      "category": "MESSAGING",
+      "level": "PERSONAL"
+    },
+    "isValid": "true"
+  },
+  {
+    "model": {
+      "category": "MESSAGING",
+      "level": "ACTIONABLE"
+    },
+    "isValid": "true"
+  },
+  {
+    "model": {
+      "category": "MESSAGING",
+      "level": "MARKETING"
+    },
+    "isValid": "true"
   }
+
+
 ]

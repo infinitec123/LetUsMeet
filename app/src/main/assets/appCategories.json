@@ -1,7 +1,7 @@
 {
   "com.facebook.katana": "SOCIAL",
   "com.facebook.orca": "SOCIAL",
-  "com.whatsapp": "SOCIAL",
+  "com.whatsapp": "MESSAGING",
   "org.telegram.messenger": "SOCIAL",
   "vibhulabs.shopperbuddy": "SHOPPING"
 }
