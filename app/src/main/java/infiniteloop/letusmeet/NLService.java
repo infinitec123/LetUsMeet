@@ -145,7 +145,7 @@ public class NLService extends NotificationListenerService {
         }
 
 
-        return false;
+        return topLevelDecision;
     }
 
 }
