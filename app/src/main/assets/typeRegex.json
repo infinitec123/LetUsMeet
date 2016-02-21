@@ -1,0 +1,33 @@
+[
+  {
+    "subString": "liked",
+    "regex": "",
+    "type": "PERSONAL"
+  },
+  {
+    "subString": "comment",
+    "regex": "",
+    "type": "PERSONAL"
+  },
+  {
+    "subString": "follow",
+    "regex": "",
+    "type": "PERSONAL"
+  },
+  {
+    "subString": "invite",
+    "regex": "",
+    "type": "PERSONAL"
+  },
+  {
+    "subString": "message",
+    "regex": "",
+    "type": "ACTIONABLE"
+  },
+  {
+    "subString": "posted",
+    "regex": "",
+    "type": "PERSONAL"
+  }
+
+]
