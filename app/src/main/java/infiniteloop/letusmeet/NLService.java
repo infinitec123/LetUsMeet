@@ -126,7 +126,7 @@ public class NLService extends NotificationListenerService {
         }
 
         boolean topLevelDecision = decisionService.decide(model);
-        if (topLevelDecision) {
+        if (model.getCategory() == Category.SOCIAL) {
             if (interestedInTime) {
                 Calendar c = Calendar.getInstance();
                 int hour = c.get(Calendar.HOUR_OF_DAY);
@@ -135,8 +135,11 @@ public class NLService extends NotificationListenerService {
                     return true;
                 }
             }
-            return true;
+            else {
+                return true;
+            }
         }
+
 
         return false;
     }
