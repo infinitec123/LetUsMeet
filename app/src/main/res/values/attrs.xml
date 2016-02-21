@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CompoundLayout">
+        <attr name="com_titleText" format="string|reference" />
+        <attr name="com_descriptionText" format="string|reference" />
+        <attr name="com_buttonText" format="string|reference" />
+        <attr name="com_labelText" format="string|reference" />
+        <attr name="com_primaryText" format="string|reference" />
+        <attr name="com_primaryLabel" format="string|reference" />
+        <attr name="com_secondaryText" format="string|reference" />
+        <attr name="com_secondaryLabel" format="string|reference" />
+        <attr name="com_bottomLabel" format="string|reference" />
+        <attr name="com_labelSize" format="dimension" />
+        <attr name="com_mode" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="large" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>
