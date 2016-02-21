@@ -35,6 +35,7 @@ public class ControlPanelActivity extends AppCompatActivity implements View.OnCl
     View offersSelect;
     CacheUtils cacheUtils;
     MultiAutoCompleteTextView offersSuggestions;
+    int startTimeIndex = 9, endTimeIndex = 15;
 
     @OnClick(R.id.new_appvice_block)
     void controlAppVice() {
@@ -54,12 +55,33 @@ public class ControlPanelActivity extends AppCompatActivity implements View.OnCl
         DecisionService decisionService = DecisionService.getInstance(this);
         decisionService.init();
         cacheUtils = new CacheUtils(this);
+        initViews();
         setTimeSeekBar();
         setMultiSearchView();
         setOnClickListeners();
 
         Log.d(TAG, decisionService.getModel("vibhulabs.shopperbuddy", "shipped sadas", false) + "");
         Log.d(TAG, decisionService.getModel("vibhulabs.shopperbuddy", "offer sadas", false) + "");
+    }
+
+    private void initViews() {
+        if (cacheUtils.isInterestedInOffers()) {
+            ((ImageView) findViewById(R.id.offers_icon)).setImageResource(R.drawable.offers_icon_big);
+        } else {
+            ((ImageView) findViewById(R.id.offers_icon)).setImageResource(R.drawable.offers_icon_big_disabled);
+        }
+
+        if (cacheUtils.isInterestedInTime()) {
+            ((ImageView) findViewById(R.id.time_icon)).setImageResource(R.drawable.time_icon_big);
+        } else {
+            ((ImageView) findViewById(R.id.time_icon)).setImageResource(R.drawable.time_icon_big_disabled);
+        }
+        if (cacheUtils.isInterestedInLocation()) {
+            ((ImageView) findViewById(R.id.location_icon)).setImageResource(R.drawable.location_icon_big);
+        } else {
+            ((ImageView) findViewById(R.id.location_icon)).setImageResource(R.drawable.location_icon_big_disabled);
+        }
+
     }
 
     private void setTimeSeekBar() {
@@ -72,7 +94,7 @@ public class ControlPanelActivity extends AppCompatActivity implements View.OnCl
             public String format(String value) {
                 Integer integer = Integer.parseInt(value);
                 StringBuilder time = new StringBuilder();
-                time = time.append((int) (integer / 4)).append(":");
+                time = time.append((integer / 4)).append(":");
                 switch (integer % 4) {
                     case 0:
                         time = time.append("00");
@@ -88,6 +110,17 @@ public class ControlPanelActivity extends AppCompatActivity implements View.OnCl
                         break;
                 }
                 return time.toString();
+            }
+        });
+        rangeBar.setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
+            @Override
+            public void onRangeChangeListener(RangeBar rangeBar, int leftPinIndex, int rightPinIndex, String leftPinValue, String rightPinValue) {
+                /*Log.d(TAG,"left"+leftPinIndex);
+                Log.d(TAG,"left"+rightPinIndex);*/
+                startTimeIndex = leftPinIndex / 4;
+                endTimeIndex = rightPinIndex / 4;
+                cacheUtils.setStartTimeIndex(startTimeIndex);
+                cacheUtils.setEndTimeIndex(endTimeIndex);
             }
         });
     }
@@ -114,12 +147,12 @@ public class ControlPanelActivity extends AppCompatActivity implements View.OnCl
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (TextUtils.isEmpty(s))
+                if (!TextUtils.isEmpty(s))
                     cacheUtils.setOffersPreferences(s.toString());
             }
         });
         String offers = cacheUtils.getOffersPreferences();
-        if (TextUtils.isEmpty(offers)) {
+        if (!TextUtils.isEmpty(offers)) {
             offersSuggestions.setText(offers);
         }
     }
@@ -147,6 +180,8 @@ public class ControlPanelActivity extends AppCompatActivity implements View.OnCl
                     ((ImageView) findViewById(R.id.time_icon)).setImageResource(R.drawable.time_icon_big_disabled);
 
                 } else {
+                    cacheUtils.setStartTimeIndex(startTimeIndex);
+                    cacheUtils.setEndTimeIndex(endTimeIndex);
                     timeSelect.setVisibility(View.VISIBLE);
                     cacheUtils.setInterestedInTime(true);
                     ((ImageView) findViewById(R.id.time_icon)).setImageResource(R.drawable.time_icon_big);
