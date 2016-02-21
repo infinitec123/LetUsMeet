@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:text="Help Us Make your experience better"
                     android:textColor="#252525"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/id_description"
@@ -75,53 +75,151 @@
                 android:id="@+id/id_inner_container_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Factors to consider"
-                    android:textSize="14sp" />
+                    android:layout_marginBottom="12sp"
+                    android:text="Things you care"
+                    android:textColor="#252525"
+                    android:textSize="16sp" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_launcher" />
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Time" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_launcher" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Location" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_launcher" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Offers" />
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
-
-        <LinearLayout
-            android:id="@+id/new_appvice_block"
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="#FFFFFF"
-            android:orientation="vertical">
+            app:cardCornerRadius="4dp">
 
-            <TextView
-                android:id="@+id/id_textview_control_fine"
+            <RelativeLayout
+                android:id="@+id/id_inner_container_4"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="?android:selectableItemBackground"
-                android:padding="16dp"
-                android:text="Control App-vice"
-                android:textColor="#252525"
-                android:textSize="12sp" />
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/id_icon_5"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/id_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/id_icon_5"
+                    android:text="Do you want to receive Social Updates?"
+                    android:textColor="#252525"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
 
 
-            <View
-                android:id="@+id/id_separator_2"
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="4dp">
+
+            <LinearLayout
+                android:id="@+id/new_appvice_block"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#DDDDDD" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/id_textview_control_fine"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="?android:selectableItemBackground"
+                    android:padding="16dp"
+                    android:text="Control App-vice"
+                    android:textColor="#252525"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 
