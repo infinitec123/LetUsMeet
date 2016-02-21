@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <infiniteloop.letusmeet.views.FirstTimeInstructionWidget
+        android:id="@+id/easylisting_dashboard_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:com_descriptionText="@string/easylisting_dashboard_top_message"
+        app:com_titleText="@string/easylisting_dashboard_top_message_title" />
+    <infiniteloop.letusmeet.views.FirstTimeInstructionWidget
+        android:id="@+id/easylisting_dashboard_message1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:com_descriptionText="@string/easylisting_dashboard_top_message"
+        app:com_titleText="@string/easylisting_dashboard_top_message_title" />
+    <infiniteloop.letusmeet.views.FirstTimeInstructionWidget
+        android:id="@+id/easylisting_dashboard_message2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:com_descriptionText="@string/easylisting_dashboard_top_message"
+        app:com_titleText="@string/easylisting_dashboard_top_message_title" />
+    <infiniteloop.letusmeet.views.FirstTimeInstructionWidget
+        android:id="@+id/easylisting_dashboard_message3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:com_descriptionText="@string/easylisting_dashboard_top_message"
+        app:com_titleText="@string/easylisting_dashboard_top_message_title" />
+</LinearLayout>
