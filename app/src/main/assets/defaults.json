@@ -15,23 +15,23 @@
   },
   {
     "model": {
-      "category": "SHOPPING",
+      "category": "SOCIAL",
       "level": "MARKETING"
     },
     "isValid": "false"
   },
   {
     "model": {
-      "category": "SHOPPING",
-      "level": "MARKETING"
+      "category": "SOCIAL",
+      "level": "ACTIONABLE"
     },
-    "isValid": "false"
+    "isValid": "true"
   },
   {
     "model": {
-      "category": "SHOPPING",
-      "level": "MARKETING"
+      "category": "SOCIAL",
+      "level": "PERSONAL"
     },
-    "isValid": "false"
+    "isValid": "true"
   }
 ]

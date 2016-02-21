@@ -1,6 +1,5 @@
 package infiniteloop.letusmeet;
 
-import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +8,12 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
+import java.util.Calendar;
+
+import infiniteloop.letusmeet.rules.Category;
 import infiniteloop.letusmeet.rules.DecisionService;
+import infiniteloop.letusmeet.rules.NotificationLevel;
+import infiniteloop.letusmeet.rules.NotificationModel;
 
 public class NLService extends NotificationListenerService {
 
@@ -95,14 +99,36 @@ public class NLService extends NotificationListenerService {
 
     private boolean isAllowed(String pkgName, String message) {
         CacheUtils cacheUtils = new CacheUtils(this);
-        if (!cacheUtils.isInterestedInOffers())
-            return false;
-        String[] offersTypes = cacheUtils.getOffersPreferences().split(",");
-        for (String offer : offersTypes) {
-            if (message.contains(offer))
-                return true;
+//        boolean interestedInLocation = cacheUtils.isInterestedInLocation();
+        boolean interestedInTime = cacheUtils.isInterestedInTime();
+        boolean interestedInOffers = cacheUtils.isInterestedInOffers();
+
+        NotificationModel model = decisionService.getModel(pkgName, message, false);
+        if (interestedInOffers) {
+            if (model.getCategory() == Category.SHOPPING && model.getLevel() == NotificationLevel.MARKETING) {
+                String[] offersTypes = cacheUtils.getOffersPreferences().split(",");
+                for (String offer : offersTypes) {
+                    if (message.contains(offer))
+                        return true;
+                }
+            }
         }
-        return decisionService.getModel(pkgName,message,false);
+
+        boolean topLevelDecision = decisionService.decide(model);
+        if (topLevelDecision) {
+            if (interestedInTime) {
+                Calendar c = Calendar.getInstance();
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                boolean officeHours = hour > 9 && hour < 17;
+                if (model.getLevel() == NotificationLevel.PERSONAL && ! officeHours) {
+                    return true;
+                }
+            }
+            return true;
+        }
+
+        return false;
+
     }
 
 }

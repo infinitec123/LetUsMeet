@@ -96,9 +96,24 @@ public class DecisionService {
         return rules;
     }
 
+    public NotificationModel getModel(String appPackageName, String notificationMessage,
+                          boolean isBigImage) {
+        Category category = getCategoryForApp(appPackageName);
+        NotificationLevel level = getLevel(notificationMessage, isBigImage);
+        NotificationModel model = new NotificationModel();
+        model.setCategory(category);
+        model.setLevel(level);
 
-    public boolean getModel(String appPackageName, String notificationMessage,
-                            boolean isBigImage) {
+        return model;
+    }
+
+    public boolean decide(NotificationModel model) {
+        return DecisionControlModel.getInstance().decide(model);
+    }
+
+
+    public boolean decide(String appPackageName, String notificationMessage,
+                          boolean isBigImage) {
         Category category = getCategoryForApp(appPackageName);
         NotificationLevel level = getLevel(notificationMessage, isBigImage);
         NotificationModel model = new NotificationModel();
