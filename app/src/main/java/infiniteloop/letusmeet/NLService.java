@@ -108,7 +108,7 @@ public class NLService extends NotificationListenerService {
             if (model.getCategory() == Category.SHOPPING && model.getLevel() == NotificationLevel.MARKETING) {
                 String[] offersTypes = cacheUtils.getOffersPreferences().split(",");
                 for (String offer : offersTypes) {
-                    if (message.contains(offer))
+                    if (message.toLowerCase().contains(offer.toLowerCase()))
                         return true;
                 }
             }

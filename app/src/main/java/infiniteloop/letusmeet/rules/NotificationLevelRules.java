@@ -54,7 +54,7 @@ public class NotificationLevelRules {
 
     public NotificationLevel test(String message) {
       Log.d("Con","sub-"+subString+"--msg="+message+"--lvl="+level);
-      if (subString != null && message.contains(subString)) {
+      if (subString != null && message.toLowerCase().contains(subString)) {
         return level;
       }
       else if (regex != null && message.matches(regex)) {

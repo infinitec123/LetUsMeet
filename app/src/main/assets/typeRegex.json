@@ -38,6 +38,16 @@
     "subString": "offer",
     "regex": "",
     "level": "MARKETING"
+  },
+  {
+    "subString": "deal",
+    "regex": "",
+    "level": "MARKETING"
+  },
+  {
+    "subString": "discount",
+    "regex": "",
+    "level": "MARKETING"
   }
 
 ]
