@@ -21,6 +21,8 @@ public class CacheUtils {
     private static String sOffersPreferenceKey = "key_offer_preference_key";
     private static String sSocialPreferenceKey = "key_social_preference_key";
     private static String sOffersPreferencesKey = "key_offers_preference_key";
+    private static String sStartTimeIndex = "key_start_time_preference_key";
+    private static String sEndTimeIndex = "key_end_time_preference_key";
 
 
     public CacheUtils(Context context) {
@@ -72,6 +74,22 @@ public class CacheUtils {
 
     public void setOffersPreferences(final String value) {
         mSharedPreferences.edit().putString(sOffersPreferencesKey, value).apply();
+    }
+
+    public int getStartTimeIndex() {
+        return  mSharedPreferences.getInt(sStartTimeIndex, -1);
+    }
+
+    public void setStartTimeIndex(int start){
+        mSharedPreferences.edit().putInt(sStartTimeIndex, start).apply();
+    }
+
+    public int getEndTimeIndex() {
+        return  mSharedPreferences.getInt(sEndTimeIndex, -1);
+    }
+
+    public void setEndTimeIndex(int end){
+        mSharedPreferences.edit().putInt(sEndTimeIndex, end).apply();
     }
 
 

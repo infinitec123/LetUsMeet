@@ -54,9 +54,13 @@ public class NLService extends NotificationListenerService {
             NLService.this.cancelAllNotifications();
         }*/
 
+        CacheUtils cacheUtils = new CacheUtils(this);
+        Log.d(TAG, "sta-" + cacheUtils.getStartTimeIndex() + "--end=" + cacheUtils.getEndTimeIndex());
+
         if (sbn.getNotification().extras.get("android.text") == null) {
             return;
         }
+
 
         if (!isAllowed(sbn.getPackageName(), sbn.getNotification().extras.get("android.text").toString())) {
             //NLService.this.cancelAllNotifications();
@@ -130,7 +134,7 @@ public class NLService extends NotificationListenerService {
             if (interestedInTime) {
                 Calendar c = Calendar.getInstance();
                 int hour = c.get(Calendar.HOUR_OF_DAY);
-                boolean officeHours = hour > 9 && hour < 17;
+                boolean officeHours = hour > (cacheUtils.getStartTimeIndex()) && hour < (cacheUtils.getEndTimeIndex());
                 if (model.getLevel() == NotificationLevel.PERSONAL && !officeHours) {
                     return true;
                 }

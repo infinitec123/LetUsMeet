@@ -184,7 +184,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginRight="12dp"
-                        android:src="@drawable/ic_launcher" />
+                        android:src="@drawable/time_icon_big" />
 
                     <TextView
                         android:id="@+id/id_6"
@@ -202,7 +202,7 @@
                         android:layout_below="@id/id_6"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        custom:tickEnd="108"
+                        custom:tickEnd="96"
                         custom:tickInterval="1"
                         custom:tickStart="0" />
 
@@ -354,6 +354,85 @@
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/id_icon_game"
                         android:text="Show game activity after office hours?"
+                        android:textColor="#252525"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="4dp">
+
+                <RelativeLayout
+                    android:id="@+id/id_inner_container_music"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/id_icon_music"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="12dp"
+                        android:src="@drawable/entertainment_icon" />
+
+                    <TextView
+                        android:id="@+id/id_music"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/id_icon_music"
+                        android:text="Suggest music during commute?"
+                        android:textColor="#252525"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="4dp">
+
+                <RelativeLayout
+                    android:id="@+id/id_inner_container_gym"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/id_icon_gym"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="12dp"
+                        android:src="@drawable/entertainment_icon" />
+
+                    <TextView
+                        android:id="@+id/id_gym"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/id_icon_gym"
+                        android:text="Do you workout in morning?"
                         android:textColor="#252525"
                         android:textSize="16sp" />
 
