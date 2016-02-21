@@ -8,8 +8,12 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 
 
@@ -53,8 +57,9 @@ public class ControlPanelActivity extends AppCompatActivity implements View.OnCl
         setTimeSeekBar();
         setMultiSearchView();
         setOnClickListeners();
-        Log.d(TAG,decisionService.decide("vibhulabs.shopperbuddy", "shipped sadas", false)+"");
-        Log.d(TAG,decisionService.decide("vibhulabs.shopperbuddy", "offer sadas", false)+"");
+
+        Log.d(TAG, decisionService.getModel("vibhulabs.shopperbuddy", "shipped sadas", false) + "");
+        Log.d(TAG, decisionService.getModel("vibhulabs.shopperbuddy", "offer sadas", false) + "");
     }
 
     private void setTimeSeekBar() {
@@ -139,24 +144,50 @@ public class ControlPanelActivity extends AppCompatActivity implements View.OnCl
                 if (timeSelect.getVisibility() == View.VISIBLE) {
                     timeSelect.setVisibility(View.GONE);
                     cacheUtils.setInterestedInTime(false);
+                    ((ImageView) findViewById(R.id.time_icon)).setImageResource(R.drawable.time_icon_big_disabled);
+
                 } else {
                     timeSelect.setVisibility(View.VISIBLE);
                     cacheUtils.setInterestedInTime(true);
+                    ((ImageView) findViewById(R.id.time_icon)).setImageResource(R.drawable.time_icon_big);
                 }
                 break;
             case R.id.location_icon:
-                timeSelect.setVisibility(View.VISIBLE);
+                //timeSelect.setVisibility(View.VISIBLE);
                 break;
             case R.id.offers_icon:
                 if (offersSelect.getVisibility() == View.VISIBLE) {
                     offersSelect.setVisibility(View.GONE);
                     cacheUtils.setInterestedInOffers(false);
+                    ((ImageView) findViewById(R.id.offers_icon)).setImageResource(R.drawable.offers_icon_big_disabled);
+
                 } else {
                     offersSelect.setVisibility(View.VISIBLE);
                     cacheUtils.setInterestedInOffers(true);
+                    ((ImageView) findViewById(R.id.offers_icon)).setImageResource(R.drawable.offers_icon_big);
+
                 }
                 break;
 
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_block:
+                startActivity(new Intent(this, BlockedNotificationsActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

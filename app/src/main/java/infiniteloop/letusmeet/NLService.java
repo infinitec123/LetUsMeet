@@ -47,7 +47,18 @@ public class NLService extends NotificationListenerService {
         //sendBroadcast(i);
 
 
-        if (isAllowed(sbn.getPackageName(), sbn.getNotification().tickerText.toString())) {
+        /*if (sbn.getNotification().extras.get("android.text").toString().contains("shipped")) {
+            // return true;
+
+        } else {
+            NLService.this.cancelAllNotifications();
+        }*/
+
+        if (sbn.getNotification().extras.get("android.text") == null) {
+            return;
+        }
+
+        if (!isAllowed(sbn.getPackageName(), sbn.getNotification().extras.get("android.text").toString())) {
             //NLService.this.cancelAllNotifications();
             NLService.this.cancelNotification(sbn.getKey());
         }
@@ -120,7 +131,7 @@ public class NLService extends NotificationListenerService {
                 Calendar c = Calendar.getInstance();
                 int hour = c.get(Calendar.HOUR_OF_DAY);
                 boolean officeHours = hour > 9 && hour < 17;
-                if (model.getLevel() == NotificationLevel.PERSONAL && ! officeHours) {
+                if (model.getLevel() == NotificationLevel.PERSONAL && !officeHours) {
                     return true;
                 }
             }
@@ -128,7 +139,6 @@ public class NLService extends NotificationListenerService {
         }
 
         return false;
-
     }
 
 }
