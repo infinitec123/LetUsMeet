@@ -3,10 +3,15 @@ package infiniteloop.letusmeet;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import infiniteloop.letusmeet.rules.NotificationModel;
 
 public class CacheUtils {
 
@@ -77,40 +82,46 @@ public class CacheUtils {
     }
 
     public int getStartTimeIndex() {
-        return  mSharedPreferences.getInt(sStartTimeIndex, -1);
+        return mSharedPreferences.getInt(sStartTimeIndex, -1);
     }
 
-    public void setStartTimeIndex(int start){
+    public void setStartTimeIndex(int start) {
         mSharedPreferences.edit().putInt(sStartTimeIndex, start).apply();
     }
 
     public int getEndTimeIndex() {
-        return  mSharedPreferences.getInt(sEndTimeIndex, -1);
+        return mSharedPreferences.getInt(sEndTimeIndex, -1);
     }
 
-    public void setEndTimeIndex(int end){
+    public void setEndTimeIndex(int end) {
         mSharedPreferences.edit().putInt(sEndTimeIndex, end).apply();
     }
 
 
     private static String sBlockedPreferencesKey = "key_blocked_preference_key";
 
-    public ArrayList<Notification> getBlockedNotifications() {
+    public List<String> getBlockedNotifications() {
         String s = mSharedPreferences.getString(sBlockedPreferencesKey, "");
+        if (TextUtils.isEmpty(s)) {
+            return null;
+        }
+
         String[] stringArray = s.split("##");
-        ArrayList<Notification> notifications = new ArrayList<>();
-        Gson gson = new Gson();
+        ArrayList<String> notifications = new ArrayList<>();
+
         for (String s1 : stringArray) {
-            Notification obj = gson.fromJson(s1, Notification.class);
-            notifications.add(obj);
+            String[] sss = s1.split("$");
+            notifications.add(sss[0] + ":" + sss[1]);
         }
 
         return notifications;
     }
 
-    public void saveIntoBlockedNotifications(String s) {
+
+    public void saveIntoBlockedNotifications(String title, String desc) {
+
         String builder = mSharedPreferences.getString(sBlockedPreferencesKey, "");
-        builder += "##" + s;
+        builder += "##" + title + "$" + desc;
         mSharedPreferences.edit().putString(sBlockedPreferencesKey, builder).apply();
     }
 

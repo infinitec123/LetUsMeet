@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.Calendar;
@@ -20,6 +21,7 @@ public class NLService extends NotificationListenerService {
     private String TAG = this.getClass().getSimpleName();
     private NLServiceReceiver nlservicereciver;
     DecisionService decisionService;
+    private CacheUtils mCacheUtils;
 
     @Override
     public void onCreate() {
@@ -29,6 +31,7 @@ public class NLService extends NotificationListenerService {
         filter.addAction("com.kpbird.nlsexample.NOTIFICATION_LISTENER_SERVICE_EXAMPLE");
         registerReceiver(nlservicereciver, filter);
         decisionService = DecisionService.getInstance(this);
+        mCacheUtils = new CacheUtils(this);
     }
 
     @Override
@@ -65,6 +68,11 @@ public class NLService extends NotificationListenerService {
         if (!isAllowed(sbn.getPackageName(), sbn.getNotification().extras.get("android.text").toString())) {
             //NLService.this.cancelAllNotifications();
             NLService.this.cancelNotification(sbn.getKey());
+            String title = sbn.getNotification().extras.get("android.title").toString();
+            String message = sbn.getNotification().extras.get("android.text").toString();
+
+            NotificationModel n = new NotificationModel(title, message);
+            mCacheUtils.saveIntoBlockedNotifications(n);
         }
 
 
@@ -124,6 +132,9 @@ public class NLService extends NotificationListenerService {
             if (model.getCategory() == Category.SHOPPING && model.getLevel() == NotificationLevel.MARKETING) {
                 String[] offersTypes = cacheUtils.getOffersPreferences().split(",");
                 for (String offer : offersTypes) {
+                    if (TextUtils.isEmpty(offer.trim())) {
+                        continue;
+                    }
                     if (message.toLowerCase().contains(offer.toLowerCase()))
                         return true;
                 }
