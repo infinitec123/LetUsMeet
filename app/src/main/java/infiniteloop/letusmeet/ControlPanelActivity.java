@@ -174,11 +174,10 @@ public class ControlPanelActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.time_icon:
-                if (timeSelect.getVisibility() == View.VISIBLE) {
+                if (cacheUtils.isInterestedInTime()) {
                     timeSelect.setVisibility(View.GONE);
                     cacheUtils.setInterestedInTime(false);
                     ((ImageView) findViewById(R.id.time_icon)).setImageResource(R.drawable.time_icon_big_disabled);
-
                 } else {
                     cacheUtils.setStartTimeIndex(startTimeIndex);
                     cacheUtils.setEndTimeIndex(endTimeIndex);

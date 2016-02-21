@@ -55,7 +55,7 @@ public class NLService extends NotificationListenerService {
         }*/
 
         CacheUtils cacheUtils = new CacheUtils(this);
-        Log.d(TAG, "sta-" + cacheUtils.getStartTimeIndex() + "--end=" + cacheUtils.getEndTimeIndex());
+        Log.d(TAG, "sta-" + cacheUtils.getStartTimeIndex() + "--end=" + cacheUtils.getEndTimeIndex() + "--title-" + sbn.getNotification().extras.get("android.text").toString());
 
         if (sbn.getNotification().extras.get("android.text") == null) {
             return;
@@ -119,6 +119,7 @@ public class NLService extends NotificationListenerService {
         boolean interestedInOffers = cacheUtils.isInterestedInOffers();
 
         NotificationModel model = decisionService.getModel(pkgName, message, false);
+        Log.d(TAG, "cat=" + model.getCategory() + "--interestedInTime=" + interestedInTime);
         if (interestedInOffers) {
             if (model.getCategory() == Category.SHOPPING && model.getLevel() == NotificationLevel.MARKETING) {
                 String[] offersTypes = cacheUtils.getOffersPreferences().split(",");
@@ -130,16 +131,19 @@ public class NLService extends NotificationListenerService {
         }
 
         boolean topLevelDecision = decisionService.decide(model);
-        if (model.getCategory() == Category.SOCIAL) {
+        if (model.getCategory() == Category.SOCIAL || model.getCategory() == Category.MESSAGING) {
+            Log.d(TAG, "officeHours" + interestedInTime + "");
             if (interestedInTime) {
                 Calendar c = Calendar.getInstance();
                 int hour = c.get(Calendar.HOUR_OF_DAY);
                 boolean officeHours = hour > (cacheUtils.getStartTimeIndex()) && hour < (cacheUtils.getEndTimeIndex());
+                Log.d(TAG, "officeHours-" + officeHours);
+                if (officeHours)
+                    return false;
                 if (model.getLevel() == NotificationLevel.PERSONAL && !officeHours) {
                     return true;
                 }
-            }
-            else {
+            } else {
                 return true;
             }
         }

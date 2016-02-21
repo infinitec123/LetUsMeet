@@ -236,7 +236,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/id_icon_7"
-                        android:text="Select the types of offers you wish to follow"
+                        android:text="Add the types of offers you wish to follow"
                         android:textColor="#252525"
                         android:textSize="16sp" />
 
