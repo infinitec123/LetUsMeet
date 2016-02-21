@@ -2,32 +2,42 @@
   {
     "subString": "liked",
     "regex": "",
-    "type": "PERSONAL"
+    "level": "PERSONAL"
   },
   {
     "subString": "comment",
     "regex": "",
-    "type": "PERSONAL"
+    "level": "PERSONAL"
   },
   {
     "subString": "follow",
     "regex": "",
-    "type": "PERSONAL"
+    "level": "PERSONAL"
   },
   {
     "subString": "invite",
     "regex": "",
-    "type": "PERSONAL"
+    "level": "PERSONAL"
   },
   {
     "subString": "message",
     "regex": "",
-    "type": "ACTIONABLE"
+    "level": "ACTIONABLE"
   },
   {
     "subString": "posted",
     "regex": "",
-    "type": "PERSONAL"
+    "level": "PERSONAL"
+  },
+  {
+    "subString": "shipped",
+    "regex": "",
+    "level": "ACTIONABLE"
+  },
+  {
+    "subString": "offer",
+    "regex": "",
+    "level": "MARKETING"
   }
 
 ]

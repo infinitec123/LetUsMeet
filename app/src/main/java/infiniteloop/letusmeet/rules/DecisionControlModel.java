@@ -1,5 +1,7 @@
 package infiniteloop.letusmeet.rules;
 
+import android.util.Log;
+
 import java.util.Map;
 
 public class DecisionControlModel {
@@ -69,6 +71,10 @@ public class DecisionControlModel {
 
 
     public boolean decide(NotificationModel model) {
+        Log.d("Cont","m="+model.getLevel());
+        Boolean isValid = getModelRules().get(model);
+        if (isValid != null)
+            return isValid;
         return false;
     }
 }

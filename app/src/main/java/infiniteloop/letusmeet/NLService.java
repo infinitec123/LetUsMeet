@@ -9,10 +9,13 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
+import infiniteloop.letusmeet.rules.DecisionService;
+
 public class NLService extends NotificationListenerService {
 
     private String TAG = this.getClass().getSimpleName();
     private NLServiceReceiver nlservicereciver;
+    DecisionService decisionService;
 
     @Override
     public void onCreate() {
@@ -21,6 +24,7 @@ public class NLService extends NotificationListenerService {
         IntentFilter filter = new IntentFilter();
         filter.addAction("com.kpbird.nlsexample.NOTIFICATION_LISTENER_SERVICE_EXAMPLE");
         registerReceiver(nlservicereciver, filter);
+        decisionService = DecisionService.getInstance(this);
     }
 
     @Override
@@ -38,7 +42,8 @@ public class NLService extends NotificationListenerService {
         i.putExtra("notification_event", "onNotificationPosted :" + sbn.getPackageName() + "\n");
         //sendBroadcast(i);
 
-        if (sbn.getPackageName().equals("org.telegram.messenger")) {
+
+        if (isAllowed(sbn.getPackageName(), sbn.getNotification().tickerText.toString())) {
             //NLService.this.cancelAllNotifications();
             NLService.this.cancelNotification(sbn.getKey());
         }
@@ -86,6 +91,18 @@ public class NLService extends NotificationListenerService {
             }
 
         }
+    }
+
+    private boolean isAllowed(String pkgName, String message) {
+        CacheUtils cacheUtils = new CacheUtils(this);
+        if (!cacheUtils.isInterestedInOffers())
+            return false;
+        String[] offersTypes = cacheUtils.getOffersPreferences().split(",");
+        for (String offer : offersTypes) {
+            if (message.contains(offer))
+                return true;
+        }
+        return decisionService.getModel(pkgName,message,false);
     }
 
 }

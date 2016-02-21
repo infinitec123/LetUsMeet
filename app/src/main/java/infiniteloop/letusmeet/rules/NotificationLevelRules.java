@@ -1,5 +1,7 @@
 package infiniteloop.letusmeet.rules;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -51,6 +53,7 @@ public class NotificationLevelRules {
     }
 
     public NotificationLevel test(String message) {
+      Log.d("Con","sub-"+subString+"--msg="+message+"--lvl="+level);
       if (subString != null && message.contains(subString)) {
         return level;
       }

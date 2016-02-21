@@ -16,6 +16,7 @@ public class CacheUtils {
     private static String sLocationPreferenceKey = "key_location_preference_key";
     private static String sOffersPreferenceKey = "key_offer_preference_key";
     private static String sSocialPreferenceKey = "key_social_preference_key";
+    private static String sOffersPreferencesKey = "key_offers_preference_key";
 
 
     public CacheUtils(Context context) {
@@ -59,6 +60,14 @@ public class CacheUtils {
 
     public void setInterestedInSocialUpdates(final boolean value) {
         mSharedPreferences.edit().putBoolean(sLocationPreferenceKey, value).apply();
+    }
+
+    public String getOffersPreferences() {
+        return mSharedPreferences.getString(sOffersPreferencesKey, "");
+    }
+
+    public void setOffersPreferences(final String value) {
+        mSharedPreferences.edit().putString(sOffersPreferencesKey, value).apply();
     }
 
 
