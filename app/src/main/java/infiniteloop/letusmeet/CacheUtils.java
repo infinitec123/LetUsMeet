@@ -110,8 +110,10 @@ public class CacheUtils {
         ArrayList<String> notifications = new ArrayList<>();
 
         for (String s1 : stringArray) {
-            String[] sss = s1.split("$");
-            notifications.add(sss[0] + ":" + sss[1]);
+            String[] sss = s1.split("AAA");
+            if (sss.length == 2) {
+                notifications.add(sss[0] + ":" + sss[1]);
+            }
         }
 
         return notifications;
@@ -121,7 +123,7 @@ public class CacheUtils {
     public void saveIntoBlockedNotifications(String title, String desc) {
 
         String builder = mSharedPreferences.getString(sBlockedPreferencesKey, "");
-        builder += "##" + title + "$" + desc;
+        builder += "##" + title + "AAA" + desc;
         mSharedPreferences.edit().putString(sBlockedPreferencesKey, builder).apply();
     }
 

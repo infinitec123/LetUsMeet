@@ -31,9 +31,13 @@ public class BlockedNotificationsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //List<String>
+        List<String> ns = mCacheUtils.getBlockedNotifications();
+        StringBuilder builder = new StringBuilder();
+        for (String s : ns) {
+            builder.append(s + "\n");
+        }
 
-        //mBlockedNotifications.setText(mCacheUtils.getBlockedNotificationsInStringFormat());
+        mBlockedNotifications.setText(builder.toString());
     }
 
 }

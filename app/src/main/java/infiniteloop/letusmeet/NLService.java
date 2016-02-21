@@ -67,12 +67,12 @@ public class NLService extends NotificationListenerService {
 
         if (!isAllowed(sbn.getPackageName(), sbn.getNotification().extras.get("android.text").toString())) {
             //NLService.this.cancelAllNotifications();
-            NLService.this.cancelNotification(sbn.getKey());
             String title = sbn.getNotification().extras.get("android.title").toString();
             String message = sbn.getNotification().extras.get("android.text").toString();
-
             NotificationModel n = new NotificationModel(title, message);
-            mCacheUtils.saveIntoBlockedNotifications(n);
+            mCacheUtils.saveIntoBlockedNotifications(title, message);
+
+            NLService.this.cancelNotification(sbn.getKey());
         }
 
 
