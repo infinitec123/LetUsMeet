@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+
 public class CacheUtils {
 
     private static final String TAG = "CacheUtils";
@@ -70,6 +74,27 @@ public class CacheUtils {
         mSharedPreferences.edit().putString(sOffersPreferencesKey, value).apply();
     }
 
+
+    private static String sBlockedPreferencesKey = "key_blocked_preference_key";
+
+    public ArrayList<Notification> getBlockedNotifications() {
+        String s = mSharedPreferences.getString(sBlockedPreferencesKey, "");
+        String[] stringArray = s.split("##");
+        ArrayList<Notification> notifications = new ArrayList<>();
+        Gson gson = new Gson();
+        for (String s1 : stringArray) {
+            Notification obj = gson.fromJson(s1, Notification.class);
+            notifications.add(obj);
+        }
+
+        return notifications;
+    }
+
+    public void saveIntoBlockedNotifications(String s) {
+        String builder = mSharedPreferences.getString(sBlockedPreferencesKey, "");
+        builder += "##" + s;
+        mSharedPreferences.edit().putString(sBlockedPreferencesKey, builder).apply();
+    }
 
     //*********************************************************************
     // End of class

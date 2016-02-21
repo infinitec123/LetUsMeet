@@ -8,6 +8,9 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -54,6 +57,9 @@ public class ControlPanelActivity extends AppCompatActivity implements View.OnCl
         setTimeSeekBar();
         setMultiSearchView();
         setOnClickListeners();
+
+        Log.d(TAG, decisionService.getModel("vibhulabs.shopperbuddy", "shipped sadas", false) + "");
+        Log.d(TAG, decisionService.getModel("vibhulabs.shopperbuddy", "offer sadas", false) + "");
     }
 
     private void setTimeSeekBar() {
@@ -163,6 +169,25 @@ public class ControlPanelActivity extends AppCompatActivity implements View.OnCl
                 }
                 break;
 
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_block:
+                startActivity(new Intent(this, BlockedNotificationsActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
